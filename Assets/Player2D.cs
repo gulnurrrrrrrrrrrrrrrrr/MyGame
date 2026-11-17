@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player2D : MonoBehaviour
 {
-    public float speed = 7f;
-    public float jumpForce = 12f;
+    [SerializeField] private PlayerStats playerStats;
     public Animator gateAnimator;
     public AudioClip jumpClip;
 
@@ -34,11 +33,30 @@ public class Player2D : MonoBehaviour
         shooter = GetComponent<Shooter>();
         health = GetComponent<Health>();
         src = GetComponent<AudioSource>();
+        if (health != null && playerStats != null)
+{
+    health.Configure(
+        playerStats.maxHealth,
+        playerStats.startingHealth
+    );
+}
+
+if (shooter != null && playerStats != null)
+{
+    shooter.Configure(playerStats);
+}
     }
 
     void Start()
     {
         coinsTotal = GameObject.FindGameObjectsWithTag("Coin").Length;
+
+        if (LevelLoader.Instance != null &&
+            LevelLoader.Instance.Data != null &&
+            LevelLoader.Instance.Data.requiredCoins > 0)
+        {
+            coinsTotal = LevelLoader.Instance.Data.requiredCoins;
+        }
     }
 
     public void OnMove(InputValue value) { move = value.Get<Vector2>(); }
@@ -47,8 +65,10 @@ public class Player2D : MonoBehaviour
     {
         if (onGround)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            onGround = false;
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                playerStats.jumpForce
+            ); onGround = false;
             if (src != null && jumpClip != null) src.PlayOneShot(jumpClip);
         }
     }
@@ -72,7 +92,10 @@ public class Player2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(move.x * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            move.x * playerStats.moveSpeed,
+            rb.linearVelocity.y
+        );
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -101,5 +124,25 @@ public class Player2D : MonoBehaviour
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground")) onGround = false;
+    }
+    public void ApplyStats(PlayerStats stats)
+    {
+        if (stats == null)
+            return;
+
+        playerStats = stats;
+
+        if (health != null)
+        {
+            health.Configure(
+                playerStats.maxHealth,
+                playerStats.startingHealth
+            );
+        }
+
+        if (shooter != null)
+        {
+            shooter.Configure(playerStats);
+        }
     }
 }

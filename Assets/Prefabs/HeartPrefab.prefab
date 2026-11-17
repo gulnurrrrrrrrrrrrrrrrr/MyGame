@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1358964304823665588}
   - component: {fileID: 678916477736166305}
   - component: {fileID: 983979540950307022}
+  - component: {fileID: -9201922300303570841}
   m_Layer: 0
   m_Name: HeartPrefab
   m_TagString: Untagged
@@ -170,3 +171,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e882352ed6afd544eb607a946243e922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heart
+  itemData: {fileID: 0}
+--- !u!114 &-9201922300303570841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035627596370711520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c74e3090c4b4fd439c208cc6de237cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hazard
+  itemData: {fileID: 11400000, guid: ab0dc37dac0b9534e84e64da8473aa90, type: 2}

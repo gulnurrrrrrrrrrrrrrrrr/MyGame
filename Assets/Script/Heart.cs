@@ -1,8 +1,11 @@
 public class Heart : Hazard
 {
-    protected override void OnHitPlayer(Health p)
+    protected override void OnHitPlayer(Health player)
     {
-        p.Heal(1);
-        p.PlayPickup();
+        if (player == null || itemData == null)
+            return;
+
+        player.Heal(itemData.healAmount);
+        player.PlayPickup();
     }
 }

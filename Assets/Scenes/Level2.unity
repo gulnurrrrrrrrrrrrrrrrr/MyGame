@@ -258,8 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba835f21cd8c3824bb1fbf15baa8b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2D
-  speed: 7
-  jumpForce: 12
+  playerStats: {fileID: 0}
   gateAnimator: {fileID: 1411206979}
   jumpClip: {fileID: 0}
 --- !u!61 &19070479
@@ -321,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 8310827249630970437, guid: 83d219922e3c085428465fdd32b6e2d4, type: 3}
-  cooldown: 0.3
+  defaultCooldown: 0.3
   shootClip: {fileID: 8300000, guid: 21cc378b85985304d988083cd303b7f2, type: 3}
 --- !u!82 &19070481
 AudioSource:
@@ -1534,6 +1533,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540432854}
   m_CullTransparentMesh: 1
+--- !u!1 &588001202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588001204}
+  - component: {fileID: 588001203}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &588001203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588001202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d66924a53c09545ba93258e4a7901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelLoader
+  levelData: {fileID: 11400000, guid: d0821035c2a706749aa481e38839f464, type: 2}
+--- !u!4 &588001204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588001202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &610817568
 GameObject:
   m_ObjectHideFlags: 0
@@ -6289,3 +6333,4 @@ SceneRoots:
   - {fileID: 1374628201}
   - {fileID: 1618324398}
   - {fileID: 1736345173}
+  - {fileID: 588001204}
