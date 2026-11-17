@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 4968748515353678150}
   - component: {fileID: 8312744975993784221}
   - component: {fileID: 3081152249450916442}
+  - component: {fileID: 7913636783714543775}
   m_Layer: 0
   m_Name: Charger
   m_TagString: Untagged
@@ -484,3 +485,27 @@ MonoBehaviour:
     m_Bits: 64
   checkInterval: 0.15
   Facing: 1
+--- !u!114 &7913636783714543775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078569453333159692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7028f32719b96c84aa13e69bfd6c4465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChargerAI
+  spriteFacesRight: 1
+  warnColor: {r: 1, g: 0, b: 0, a: 1}
+  warnClip: {fileID: 0}
+  enemyStats: {fileID: 11400000, guid: 72796c198b3afc24f9078a8942461f27, type: 2}
+  stateLabel: {fileID: 0}
+  points: []
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  edgeCheckForward: 0.6
+  edgeCheckDown: 1.5
+  stunColor: {r: 0.5, g: 0.5, b: 1, a: 1}

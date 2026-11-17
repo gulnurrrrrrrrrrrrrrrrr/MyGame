@@ -258,8 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba835f21cd8c3824bb1fbf15baa8b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2D
-  speed: 7
-  jumpForce: 13
+  playerStats: {fileID: 11400000, guid: 6a6b2f947ab7bf14582a085a27df9810, type: 2}
   gateAnimator: {fileID: 1411206979}
   jumpClip: {fileID: 0}
 --- !u!61 &19070479
@@ -321,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 8310827249630970437, guid: 83d219922e3c085428465fdd32b6e2d4, type: 3}
-  cooldown: 0.3
+  defaultCooldown: 0.3
   shootClip: {fileID: 8300000, guid: 21cc378b85985304d988083cd303b7f2, type: 3}
 --- !u!82 &19070481
 AudioSource:
@@ -1624,6 +1623,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.4, y: -2.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &407868124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407868126}
+  - component: {fileID: 407868125}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &407868125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407868124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d66924a53c09545ba93258e4a7901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelLoader
+  levelData: {fileID: 11400000, guid: 8da1dfc70980820439b3498c0e8c7540, type: 2}
+--- !u!4 &407868126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407868124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4885,7 +4929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23dfeae78701a1d4a9624a9efcfe469a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelExit
-  nextScene: Win
+  nextScene: Level2
 --- !u!1 &1476726993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,6 +6416,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1310107340124342228, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -1310107340124342228, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1310107340124342228, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
+      propertyPath: 'points.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1837565970}
+    - target: {fileID: -1310107340124342228, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
+      propertyPath: 'points.Array.data[1]'
+      value: 
+      objectReference: {fileID: 600029618}
     - target: {fileID: 2351748410786953483, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
       propertyPath: m_Mass
       value: 100
@@ -6384,18 +6444,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patroller
       objectReference: {fileID: 0}
-    - target: {fileID: 3742575219599090564, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 3742575219599090564, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
-      propertyPath: 'points.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1837565970}
-    - target: {fileID: 3742575219599090564, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
-      propertyPath: 'points.Array.data[1]'
-      value: 
-      objectReference: {fileID: 600029618}
     - target: {fileID: 7179636323981297048, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
       propertyPath: m_Size.y
       value: 1.4634966
@@ -6461,11 +6509,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8ffeabbfefeb240b9a88de80d23890, type: 3}
---- !u!1 &2877289456238372792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9078569453333159692, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
-  m_PrefabInstance: {fileID: 7354380434210811180}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7354380434210811180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6530,6 +6573,22 @@ PrefabInstance:
       propertyPath: m_LinearDamping
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7913636783714543775, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913636783714543775, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913636783714543775, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
+      propertyPath: 'points.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1282061426}
+    - target: {fileID: 7913636783714543775, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
+      propertyPath: 'points.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1840959385}
     - target: {fileID: 8535741278994192213, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
       propertyPath: m_Size.y
       value: 1.5348847
@@ -6545,45 +6604,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9078569453333159692, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8240434980711350568}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a37cbc9c67ad0f4c8d2f944dff8bb1c, type: 3}
---- !u!114 &8240434980711350568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2877289456238372792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7028f32719b96c84aa13e69bfd6c4465, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChargerAI
-  spriteFacesRight: 1
-  warnColor: {r: 1, g: 0, b: 0, a: 1}
-  warnClip: {fileID: 8300000, guid: cb0517ec867e0354a9ea1bbedcc4ff7d, type: 3}
-  damage: 1
-  stateLabel: {fileID: 0}
-  points:
-  - {fileID: 1282061426}
-  - {fileID: 1840959385}
-  patrolSpeed: 1.5
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  edgeCheckForward: 0.6
-  edgeCheckDown: 1.5
-  triggerRange: 6
-  cooldown: 1
-  windUp: 0.7
-  dashSpeed: 9
-  dashTime: 0.6
-  hitRadius: 0.8
-  stunTime: 1
-  stunColor: {r: 0.5, g: 0.5, b: 1, a: 1}
 --- !u!1001 &8437315573302536591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6725,3 +6747,4 @@ SceneRoots:
   - {fileID: 600029618}
   - {fileID: 73762381}
   - {fileID: 2043536301}
+  - {fileID: 407868126}

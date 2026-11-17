@@ -6,16 +6,10 @@ public class ShooterAI : EnemyBase
     State state;
 
     [Header("Distance")]
-    [SerializeField] float preferredDistance = 5f;
-    [SerializeField] float distanceBand = 0.7f;
-    [SerializeField] float moveSpeed = 2f;
-    [SerializeField] float loseTime = 2f;
     [SerializeField] Transform leftLimit;
     [SerializeField] Transform rightLimit;
 
     [Header("Attack")]
-    [SerializeField] float aimTime = 0.6f;
-    [SerializeField] float cooldown = 1.5f;
     [SerializeField] float shotSpeed = 5f;
     [SerializeField] EnemyShot shotPrefab;
     [SerializeField] Transform muzzle;
@@ -38,7 +32,7 @@ public class ShooterAI : EnemyBase
         switch (state)
         {
             case State.Idle:
-                Patrol();                                  // ходит между точками
+                Patrol();                                  
                 if (vision.CanSee) SetState(State.KeepDistance);
                 break;
 
@@ -46,20 +40,20 @@ public class ShooterAI : EnemyBase
                 if (vision.CanSee) timer = 0f;
                 Face(DirToPlayer);
                 float d = DistToPlayer;
-                if (d < preferredDistance - distanceBand) moveX = -DirToPlayer * moveSpeed;
-                else if (d > preferredDistance + distanceBand) moveX = DirToPlayer * moveSpeed;
+                if (d < enemyStats.preferredDistance - enemyStats.distanceBand) moveX = -DirToPlayer * enemyStats.moveSpeed;
+                else if (d > enemyStats.preferredDistance + enemyStats.distanceBand) moveX = DirToPlayer * enemyStats.moveSpeed;
                 else
                 {
                     moveX = 0f;
                     if (vision.CanSee && OnScreen) SetState(State.Aim);
                 }
                 ClampToLimits();
-                if (timer > loseTime) SetState(State.Idle);
+                if (timer > enemyStats.loseTime) SetState(State.Idle);
                 break;
 
             case State.Aim:
                 moveX = 0f;
-                if (timer >= aimTime)
+                if (timer >= enemyStats.aimTime)
                 {
                     Fire();
                     SetState(State.Cooldown);
@@ -68,7 +62,7 @@ public class ShooterAI : EnemyBase
 
             case State.Cooldown:
                 moveX = 0f;
-                if (timer >= cooldown)
+                if (timer >= enemyStats.attackCooldown)
                     SetState(vision.CanSee ? State.KeepDistance : State.Idle);
                 break;
         }
@@ -83,7 +77,10 @@ public class ShooterAI : EnemyBase
     void Fire()
     {
         EnemyShot shot = Instantiate(shotPrefab, muzzle.position, Quaternion.identity);
-        shot.Launch(aimDir * shotSpeed, damage);
+        shot.Launch(
+            aimDir * enemyStats.projectileSpeed,
+            enemyStats.damage
+        );
     }
 
     void UpdateLaser()

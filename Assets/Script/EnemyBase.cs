@@ -9,12 +9,11 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected bool spriteFacesRight = true;
     [SerializeField] protected Color warnColor = Color.red;
     [SerializeField] protected AudioClip warnClip;
-    [SerializeField] protected int damage = 1;
+    [SerializeField] protected EnemyStats enemyStats; 
     [SerializeField] TMP_Text stateLabel;
 
     [Header("Patrol (общий для всех)")]
     [SerializeField] protected Transform[] points;     
-    [SerializeField] protected float patrolSpeed = 1.5f;
 
     [Header("Edge check (не падать с края)")]
     [SerializeField] protected LayerMask groundMask;   
@@ -29,7 +28,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected float timer;
     protected float moveX;
 
-    Color normalColor;
+    protected Color normalColor;
     Camera cam;
     int pointIndex;
 
@@ -40,6 +39,10 @@ public abstract class EnemyBase : MonoBehaviour
         vision = GetComponent<Vision2D>();
         audioSrc = GetComponent<AudioSource>();
         normalColor = sr.color;
+        if (enemyStats == null)
+        {
+            Debug.LogError("EnemyStats is not assigned: " + gameObject.name);
+        }
     }
 
     protected virtual void Start()
@@ -81,7 +84,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void HitPlayer()
     {
-        player.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+        player.SendMessage(
+            "TakeDamage",
+            enemyStats.damage,
+            SendMessageOptions.DontRequireReceiver
+        );
     }
 
 
@@ -100,7 +107,7 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         Face(dir);
-        moveX = dir * patrolSpeed;
+        moveX = dir * enemyStats.patrolSpeed;
     }
 
 

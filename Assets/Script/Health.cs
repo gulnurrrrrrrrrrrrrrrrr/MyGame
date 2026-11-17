@@ -57,6 +57,11 @@ public class Health : MonoBehaviour
         sr.enabled = true;
         invincible = false;
     }
+    public void Configure(int maximumHealth, int startingHealth)
+    {
+        maxHp = maximumHealth;
+        hp = Mathf.Clamp(startingHealth, 1, maxHp);
+    }
 
     void GameOver()
     {

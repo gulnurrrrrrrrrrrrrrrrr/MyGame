@@ -1,10 +1,16 @@
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
+
 {
+    PlayerStats playerStats;
+
+    public void Configure(PlayerStats stats)
+    {
+        playerStats = stats;
+    }
     public GameObject bulletPrefab;
-    public float cooldown = 0.3f;
-    public AudioClip shootClip;
+    [SerializeField] private float defaultCooldown = 0.3f; public AudioClip shootClip;
 
     float nextShot;
     AudioSource src;
@@ -17,11 +23,19 @@ public class Shooter : MonoBehaviour
     public void Shoot(float dir)
     {
         if (Time.time < nextShot) return;
-        nextShot = Time.time + cooldown;
+        float currentCooldown = playerStats != null
+            ? playerStats.shootCooldown
+            : defaultCooldown;
 
+        nextShot = Time.time + currentCooldown;
         GameObject b = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        b.GetComponent<Bullet>().direction = dir;
+        Bullet bullet = b.GetComponent<Bullet>();
+        bullet.direction = dir;
 
+        if (playerStats != null)
+        {
+            bullet.speed = playerStats.bulletSpeed;
+        }
         if (src != null && shootClip != null) src.PlayOneShot(shootClip);
     }
 }

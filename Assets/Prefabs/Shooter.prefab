@@ -469,16 +469,16 @@ MonoBehaviour:
   spriteFacesRight: 1
   warnColor: {r: 1, g: 0, b: 0, a: 1}
   warnClip: {fileID: 0}
-  damage: 1
+  enemyStats: {fileID: 11400000, guid: 80f85e1c2a02c7544884f18890ee6e51, type: 2}
   stateLabel: {fileID: 0}
-  preferredDistance: 5
-  distanceBand: 0.7
-  moveSpeed: 2
-  loseTime: 2
+  points: []
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  edgeCheckForward: 0.6
+  edgeCheckDown: 1.5
   leftLimit: {fileID: 0}
   rightLimit: {fileID: 0}
-  aimTime: 0.6
-  cooldown: 1.5
   shotSpeed: 5
   shotPrefab: {fileID: 5605742500792747223, guid: ac1ad1d4ddde46f4f946531e81d48b1f, type: 3}
   muzzle: {fileID: 1869506491441658587}

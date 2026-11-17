@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2351748410786953483}
   - component: {fileID: 6799913352612105066}
   - component: {fileID: 1535620513129545467}
-  - component: {fileID: 3742575219599090564}
+  - component: {fileID: -1310107340124342228}
   m_Layer: 0
   m_Name: Patroller
   m_TagString: Untagged
@@ -343,7 +343,7 @@ MonoBehaviour:
     m_Bits: 64
   checkInterval: 0.15
   Facing: 1
---- !u!114 &3742575219599090564
+--- !u!114 &-1310107340124342228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,19 +358,14 @@ MonoBehaviour:
   spriteFacesRight: 1
   warnColor: {r: 1, g: 0, b: 0, a: 1}
   warnClip: {fileID: 0}
-  damage: 1
+  enemyStats: {fileID: 11400000, guid: ded382850563dda4b91545be634a2262, type: 2}
   stateLabel: {fileID: 0}
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  patrolSpeed: 1.5
-  chaseSpeed: 4
-  loseTime: 2
-  attackRange: 1.2
-  strikeReach: 1.5
-  windUp: 0.5
-  recovery: 0.7
-  cooldown: 1.2
+  points: []
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  edgeCheckForward: 0.6
+  edgeCheckDown: 1.5
 --- !u!1 &9131696316028959430
 GameObject:
   m_ObjectHideFlags: 0
